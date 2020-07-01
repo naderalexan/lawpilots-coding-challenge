@@ -17,3 +17,9 @@ services:
         environment:
             - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
             - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+
+    flower:
+        image: mher/flower
+        command: ["flower", "--broker=amqp://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@rabbitmq:5672", "--port=8888"]
+        ports:
+            - 8888:8888
